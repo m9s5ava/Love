@@ -4,7 +4,239 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOVE</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('photo_2025-11-04_00-52-03.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Ubuntu", sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .cons {
+            min-height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeScaleIn 1s ease-out forwards;
+            padding-bottom: 100px; /* لتجنب تغطية الفوتر */
+        }
+
+        .video img {
+            max-width: 90%;
+            width: 300px;
+            height: auto;
+            animation: pulse 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .sec h1 {
+            font-family: "Lobster", sans-serif;
+            font-weight: 300;
+            font-size: 70px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .sec h1 span {
+            color: rgb(255, 0, 0);
+            display: inline-block;
+            animation: glowText 1.5s ease-in-out infinite alternate;
+            font-size: 60px;
+        }
+
+        .sec p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 35px;
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+
+        .butt a {
+            color: rgb(255, 0, 0);
+            border: 3px black solid;
+            border-radius: 15px;
+            text-decoration: none;
+            padding: 10px 30px;
+            margin: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, text-shadow 0.5s ease-in-out;
+        }
+
+        .butt a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(234, 14, 14, 0.7);
+            text-shadow: 0 0 10px rgba(234, 14, 14, 0.7);
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-radius: 10px 10px 0 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            z-index: 100;
+        }
+
+        /* Hearts */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            background-color: rgba(234, 14, 14, 0.8);
+            transform: rotate(45deg);
+            animation-name: floatUp;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(234, 14, 14, 0.8);
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -50%; left: 0; }
+        .heart::after { left: -50%; top: 0; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+        }
+
+        /* Stars */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: starTwinkle 2s infinite alternate;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Bubbles */
+        .bubble {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: bubbleUp linear forwards;
+        }
+
+        @keyframes bubbleUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Lines */
+        #lines-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .light-line {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.1);
+            animation: moveLine linear infinite;
+        }
+
+        @keyframes moveLine {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Sparkle on mouse */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleFade 0.5s forwards;
+        }
+
+        @keyframes sparkleFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Animations */
+        @keyframes fadeScaleIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glowText {
+            0% { text-shadow: 0 0 5px rgba(234, 14, 14, 0.7); }
+            100% { text-shadow: 0 0 20px rgba(234, 14, 14, 1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .sec h1 { font-size: 50px; }
+            .sec h1 span { font-size: 40px; }
+            .sec p { font-size: 16px; }
+            .video img { width: 90%; max-width: 250px; }
+            .butt a { padding: 8px 20px; font-size: 14px; }
+        }
+    </style>
 </head>
 <body>
     <div id="hearts-container"></div>
@@ -20,12 +252,13 @@
         </div>
         <div class="butt">
             <a href="two_page.html">Yes please</a>
-            <a href="one_page.html">no thanks</a>
+            <a href="one_page.html">No thanks</a>
         </div>
-        <footer> Mostafa Mohammed | Love &copy; 2025</footer>
+        <footer>Mostafa Mohammed | Love &copy; 2025</footer>
     </div>
 
     <script>
+        // Hearts
         const heartsContainer = document.getElementById('hearts-container');
         function createHeart() {
             const heart = document.createElement('div');
@@ -40,7 +273,7 @@
         }
         setInterval(createHeart, 300);
 
-
+        // Stars
         for(let i=0; i<50; i++){
             const star = document.createElement('div');
             star.classList.add('star');
@@ -50,6 +283,7 @@
             document.body.appendChild(star);
         }
 
+        // Bubbles
         function createBubble() {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
@@ -60,6 +294,7 @@
         }
         setInterval(createBubble, 500);
 
+        // Light lines
         const linesContainer = document.getElementById('lines-container');
         for(let i=0;i<10;i++){
             const line = document.createElement('div');
@@ -69,6 +304,7 @@
             linesContainer.appendChild(line);
         }
 
+        // Mouse sparkles
         document.addEventListener('mousemove', e => {
             const sparkle = document.createElement('div');
             sparkle.classList.add('sparkle');
@@ -78,6 +314,7 @@
             setTimeout(() => sparkle.remove(), 500);
         });
 
+        // Fade in content
         window.addEventListener('load', () => {
             const cons = document.querySelector('.cons');
             cons.style.opacity = 1;

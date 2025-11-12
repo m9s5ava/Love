@@ -9,7 +9,8 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -24,11 +25,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: "Ubuntu", sans-serif;
-            overflow-x: hidden;
-            overflow: hidden;
             text-align: center;
-
         }
 
         .cons {
@@ -40,6 +37,7 @@
             text-align: center;
             animation: fadeIn 1.5s ease forwards;
             padding: 20px;
+            margin-bottom: 80px; /* لتجنب تغطية الفوتر */
         }
 
         @keyframes fadeIn {
@@ -47,7 +45,6 @@
                 opacity: 0;
                 transform: scale(0.95);
             }
-
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -56,31 +53,23 @@
 
         h2 {
             text-transform: uppercase;
-
-            color: #000000;
+            color: #000;
             font-weight: 700;
             font-size: 23px;
             font-family: "Stack Sans Notch", sans-serif;
-            /* text-shadow: 0 0 15px #f316a2, 0 0 30px #d40a80; */
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         h2.most {
-            text-transform: uppercase;
-
             margin-top: 15px;
             font-size: 19px;
-            color: #000000;
-            font-weight: 700;
-    font-family: "Stack Sans Notch", sans-serif;
-            /* text-shadow: 0 0 25px #932f48, 0 0 40px #ff6699; */
         }
 
         h1 {
             text-transform: uppercase;
             font-family: "Lobster", cursive;
-            font-size: 40px;
-            color: #000000;
+            font-size: 36px;
+            color: #000;
             text-shadow: 0 0 10px #ff0000, 0 0 50px #cc0a0a;
             animation: glowText 2s infinite alternate;
             margin: 15px 0;
@@ -90,7 +79,6 @@
             from {
                 text-shadow: 0 0 15px #ff2e63, 0 0 30px #ff4d6d;
             }
-
             to {
                 text-shadow: 0 0 45px #201c1d, 0 0 70px #ff99bb;
             }
@@ -100,61 +88,61 @@
             position: relative;
             margin-top: 25px;
             display: inline-block;
+            width: 100%;
+            max-width: 600px; /* أقصى عرض للفيديو */
         }
 
         video {
-            width: 480px;
-            max-width: 95%;
-            border-radius: 25px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
             border: 3px solid rgba(0, 0, 0, 0.7);
-
-            /* box-shadow: 0 0 50px rgba(255, 50, 100, 0.8); */
             transition: 0.4s ease;
         }
 
         video:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 80px rgba(255, 50, 100, 1);
+            box-shadow: 0 0 50px rgba(255, 50, 100, 0.8);
         }
 
         .controls {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 18px;
+            gap: 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 50px;
-            padding: 12px 30px;
+            padding: 8px 15px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(255, 0, 100, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 100, 0.4);
         }
 
         .controls button {
-            width: 55px;
-            height: 55px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             background: radial-gradient(circle at top left, #ff2e63, #c2185b);
-            box-shadow: 0 0 20px rgba(255, 0, 100, 0.7);
+            box-shadow: 0 0 15px rgba(255, 0, 100, 0.7);
             cursor: pointer;
             transition: 0.3s ease;
         }
 
         .controls button:hover {
             transform: scale(1.2) rotate(12deg);
-            box-shadow: 0 0 35px #ff4d6d, 0 0 60px #ff99bb;
+            box-shadow: 0 0 30px #ff4d6d, 0 0 50px #ff99bb;
         }
 
         .bott a {
-            margin-top: 28px;
+            margin-top: 20px;
             display: inline-block;
-            padding: 14px 42px;
+            padding: 12px 30px;
             border-radius: 30px;
-            border: 2px solid #000000;
+            border: 2px solid #000;
             background: transparent;
             color: #ff0000;
             font-weight: 700;
@@ -165,8 +153,8 @@
 
         .bott a:hover {
             background: #ff4d6d;
-            color: white;
-            box-shadow: 0 0 35px #ff4d6d;
+            color: #fff;
+            box-shadow: 0 0 25px #ff4d6d;
             transform: scale(1.1);
         }
 
@@ -174,10 +162,9 @@
             background-color: #000;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             position: fixed;
             width: 100%;
-            border-radius: 10px 10px 0 0;
             bottom: 0;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bolder;
@@ -198,8 +185,8 @@
         .heart {
             position: absolute;
             bottom: -20px;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background: rgba(255, 50, 100, 0.85);
             transform: rotate(45deg);
             animation: floatUp linear forwards;
@@ -228,18 +215,32 @@
                 transform: translateY(0) rotate(45deg);
                 opacity: 1;
             }
-
             100% {
                 transform: translateY(-100vh) rotate(45deg);
                 opacity: 0;
             }
         }
 
-        .ssss {
-            color: #000000;
-            font-weight: 900;
-            font-size: 30px;
-
+        /* Responsive for mobile devices */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 18px;
+            }
+            h2.most {
+                font-size: 16px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .bott a {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+            .controls button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -251,7 +252,7 @@
         <h2>This song reminds me of you</h2>
 
         <div class="video-container">
-            <video id="loveVideo" src="vedeooo.mp4" autoplay  loop playsinline></video>
+            <video id="loveVideo" src="vedeooo.mp4" autoplay loop playsinline></video>
 
             <div class="controls">
                 <button id="playPause"><i class="fa-solid fa-pause"></i></button>

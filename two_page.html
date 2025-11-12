@@ -9,16 +9,209 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Ubuntu:wght@400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="two_page.css">
 
+    <style>
+        /* === Base Styles === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('photo_2025-11-04_00-52-03.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Ubuntu", sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            z-index: 10;
+        }
+
+        .cons {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .sec h1 {
+            font-family: "Lobster", cursive;
+            font-weight: 300;
+            font-size: 40px;
+            margin-bottom: 0;
+            color: rgb(255, 0, 0);
+            animation: glowText 1.5s ease-in-out infinite alternate;
+            margin-top: 70px;
+            text-transform: capitalize;
+        }
+
+        .sec p {
+            color: #000000c4;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        a {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 3px black solid;
+            border-radius: 15px;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, text-shadow 0.5s ease-in-out;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(234, 14, 14, 0.7);
+            text-shadow: 0 0 10px rgba(234, 14, 14, 0.7);
+        }
+
+        .img {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 80px;
+            padding: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: nowrap; /* دائمًا صورتين جنب بعض */
+        }
+
+        .img img {
+            background-color: #fff;
+            width: 160px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .img .photo {
+            width: 160px;
+            height: 140px;
+        }
+
+        @keyframes glowText {
+            0% { text-shadow: 0 0 5px rgba(234, 14, 14, 0.7); }
+            100% { text-shadow: 0 0 20px rgba(234, 14, 14, 1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hearts */
+        #hearts-container,
+        #lines-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #hearts-container { z-index: 2; }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            background-color: rgba(234, 14, 14, 0.8);
+            transform: rotate(45deg);
+            width: 20px;
+            height: 20px;
+            animation: floatUp linear forwards;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(234, 14, 14, 0.8);
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -50%; left: 0; }
+        .heart::after { left: -50%; top: 0; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleFade 0.5s forwards;
+            z-index: 10000;
+        }
+
+        @keyframes sparkleFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* === Responsive === */
+        @media (max-width: 480px) {
+            .sec h1 { font-size: 26px; margin-top: 50px; }
+            .sec p { font-size: 14px; }
+            .img img, .img .photo { width: 120px; height: 100px; }
+            .row { gap: 15px; }
+            footer { padding: 15px; font-size: 14px; }
+        }
+
+        @media (max-width: 768px) {
+            .sec h1 { font-size: 32px; margin-top: 60px; }
+            .sec p { font-size: 16px; }
+            .img img, .img .photo { width: 140px; height: 120px; }
+            .row { gap: 20px; }
+        }
+
+        @media (min-width: 1025px) {
+            .img img, .img .photo { width: 160px; height: 140px; }
+        }
+
+    </style>
 </head>
 
 <body>
-    <!-- Animation Containers -->
     <div id="hearts-container"></div>
     <div id="lines-container"></div>
 
-    <!-- Content -->
     <div class="cons">
         <div class="sec">
             <h1>These are for you!</h1>
@@ -26,13 +219,11 @@
         </div>
 
         <div class="img">
-            <!-- الصف الأول -->
             <div class="row">
                 <a href="#"><img src="photo3-removebg-preview.png" alt="img"></a>
                 <a href="#"><img class="photo" src="photo4-removebg-preview.png" alt="img"></a>
             </div>
 
-            <!-- الصف الثاني -->
             <div class="row">
                 <a href="youtupe.html"><img src="photo2-removebg-preview.png" alt="img"></a>
                 <a href="happy.html"><img src="photo1-removebg-preview.png" alt="img"></a>
@@ -43,7 +234,7 @@
     <footer>Mostafa Mohammed | Love &copy; 2025</footer>
 
     <script>
-        // === Hearts ===
+        // Hearts
         const heartsContainer = document.getElementById('hearts-container');
         function createHeart() {
             const heart = document.createElement('div');
@@ -58,7 +249,7 @@
         }
         setInterval(createHeart, 300);
 
-        // === Sparkle Effect ===
+        // Sparkle
         document.addEventListener('mousemove', e => {
             const sparkle = document.createElement('div');
             sparkle.classList.add('sparkle');
@@ -68,10 +259,9 @@
             setTimeout(() => sparkle.remove(), 500);
         });
 
-        // === Fade In ===
+        // Fade In
         window.addEventListener('load', () => {
-            const cons = document.querySelector('.cons');
-            cons.style.opacity = 1;
+            document.querySelector('.cons').style.opacity = 1;
         });
     </script>
 </body>
