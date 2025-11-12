@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOVE</title>
-    <link rel="stylesheet" href="one_page.css">
-    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- عناصر لتأثيرات -->
     <div id="hearts-container"></div>
     <div id="lines-container"></div>
 
     <div class="cons">
-        <div class="img">
-            <img src="IMG-3379-unscreen.gif" alt="gif animation" />
+        <div class="video">
+           <img src="video-2025-11-04-00-21-51-unscreen.gif" alt="gif animation" />
         </div>
         <div class="sec">
-            <h1>I promise you'll like it</h1>
+            <h1>Hello <br> <span>My Love!</span></h1>
+            <p>do you want to see your gift?</p>
         </div>
-        <div class="bott">
-            <a href="index.html">Try again</a>
+        <div class="butt">
+            <a href="two_page.html">Yes please</a>
+            <a href="one_page.html">no thanks</a>
         </div>
-          <footer> Mostafa Mohammed | Love &copy; 2025</footer>
+        <footer> Mostafa Mohammed | Love &copy; 2025</footer>
     </div>
 
     <script>
-        // === القلوب ===
         const heartsContainer = document.getElementById('hearts-container');
         function createHeart() {
             const heart = document.createElement('div');
@@ -43,38 +40,35 @@
         }
         setInterval(createHeart, 300);
 
-        // === النجوم ===
-        for (let i = 0; i < 50; i++) {
+
+        for(let i=0; i<50; i++){
             const star = document.createElement('div');
             star.classList.add('star');
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.top = Math.random()*100 + 'vh';
+            star.style.left = Math.random()*100 + 'vw';
+            star.style.animationDuration = (Math.random()*3+2) + 's';
             document.body.appendChild(star);
         }
 
-        // === الفقاعات ===
         function createBubble() {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
-            bubble.style.left = Math.random() * 100 + 'vw';
-            bubble.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            bubble.style.left = Math.random()*100 + 'vw';
+            bubble.style.animationDuration = (Math.random()*3+2) + 's';
             document.body.appendChild(bubble);
             setTimeout(() => bubble.remove(), 5000);
         }
         setInterval(createBubble, 500);
 
-        // === الخطوط الضوئية ===
         const linesContainer = document.getElementById('lines-container');
-        for (let i = 0; i < 10; i++) {
+        for(let i=0;i<10;i++){
             const line = document.createElement('div');
             line.classList.add('light-line');
-            line.style.left = Math.random() * 100 + 'vw';
-            line.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            line.style.left = Math.random()*100 + 'vw';
+            line.style.animationDuration = (Math.random()*5+5) + 's';
             linesContainer.appendChild(line);
         }
 
-        // === تأثير Sparkle على الماوس ===
         document.addEventListener('mousemove', e => {
             const sparkle = document.createElement('div');
             sparkle.classList.add('sparkle');
@@ -84,12 +78,10 @@
             setTimeout(() => sparkle.remove(), 500);
         });
 
-        // === fade-in عند تحميل الصفحة ===
         window.addEventListener('load', () => {
             const cons = document.querySelector('.cons');
             cons.style.opacity = 1;
         });
     </script>
 </body>
-
 </html>
