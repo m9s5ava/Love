@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            overflow-x: hidden;
+            background-image: url('photo_2025-11-04_00-52-03.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Ubuntu", sans-serif;
+            overflow-x: hidden;
+            overflow: hidden;
+            text-align: center;
+
+        }
+
+        .cons {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 1.5s ease forwards;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h2 {
+            color: #000000;
+            font-weight: 700;
+            font-size: 25px;
+            font-family: "Ubuntu", sans-serif;
+            /* text-shadow: 0 0 15px #f316a2, 0 0 30px #d40a80; */
+            margin-bottom: 8px;
+        }
+
+        h2.most {
+            margin-top: 20px;
+            color: #000000;
+            font-weight: 500;
+            font-family: "Ubuntu", sans-serif;
+            /* text-shadow: 0 0 25px #932f48, 0 0 40px #ff6699; */
+        }
+
+        h1 {
+            font-family: "Lobster", cursive;
+            font-size: 50px;
+            color: #000000;
+            text-shadow: 0 0 10px #ff0000, 0 0 50px #cc0a0a;
+            animation: glowText 2s infinite alternate;
+            margin: 15px 0;
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 15px #ff2e63, 0 0 30px #ff4d6d;
+            }
+
+            to {
+                text-shadow: 0 0 45px #201c1d, 0 0 70px #ff99bb;
+            }
+        }
+
+        .video-container {
+            position: relative;
+            margin-top: 25px;
+            display: inline-block;
+        }
+
+        video {
+            width: 480px;
+            max-width: 95%;
+            border-radius: 25px;
+            border: 3px solid rgba(0, 0, 0, 0.7);
+
+            /* box-shadow: 0 0 50px rgba(255, 50, 100, 0.8); */
+            transition: 0.4s ease;
+        }
+
+        video:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 80px rgba(255, 50, 100, 1);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            padding: 12px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(255, 0, 100, 0.4);
+        }
+
+        .controls button {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 24px;
+            background: radial-gradient(circle at top left, #ff2e63, #c2185b);
+            box-shadow: 0 0 20px rgba(255, 0, 100, 0.7);
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .controls button:hover {
+            transform: scale(1.2) rotate(12deg);
+            box-shadow: 0 0 35px #ff4d6d, 0 0 60px #ff99bb;
+        }
+
+        .bott a {
+            margin-top: 28px;
+            display: inline-block;
+            padding: 14px 42px;
+            border-radius: 30px;
+            border: 2px solid #000000;
+            background: transparent;
+            color: #ff0000;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: 0.4s ease;
+        }
+
+        .bott a:hover {
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 0 35px #ff4d6d;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            z-index: 10;
+        }
+
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 50, 100, 0.85);
+            transform: rotate(45deg);
+            animation: floatUp linear forwards;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 50, 100, 0.85);
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -50%;
+        }
+
+        .heart::after {
+            left: -50%;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .ssss {
+            color: #000000;
+            font-weight: 900;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hearts-container"></div>
+
+    <div class="cons">
+        <h2>This song reminds me of you</h2>
+
+        <div class="video-container">
+            <video id="loveVideo" src="vedeooo.mp4" autoplay muted loop playsinline></video>
+
+            <div class="controls">
+                <button id="playPause"><i class="fa-solid fa-pause"></i></button>
+                <button id="muteToggle"><i class="fa-solid fa-volume-high"></i></button>
+                <button id="restart"><i class="fa-solid fa-rotate-left"></i></button>
+            </div>
+        </div>
+
+        <h2 class="most">The most beautiful thing - Lomnty</h2>
+        <p class="ssss">- - - - - - - - - - - - - - - - -</p>
+        <h1>Song about you</h1>
+
+        <div class="bott">
+            <a href="two_page.html">RETURN</a>
+        </div>
+    </div>
+
+    <footer>Mostafa Mohammed | Love &copy; 2025</footer>
+
+    <script>
+        // قلوب متحركة
+        const heartsContainer = document.getElementById("hearts-container");
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            const size = Math.random() * 20 + 12;
+            heart.style.width = size + "px";
+            heart.style.height = size + "px";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        const video = document.getElementById("loveVideo");
+        const playPause = document.getElementById("playPause");
+        const muteToggle = document.getElementById("muteToggle");
+        const restart = document.getElementById("restart");
+
+        playPause.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                playPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } else {
+                video.pause();
+                playPause.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        });
+
+        muteToggle.addEventListener("click", () => {
+            video.muted = !video.muted;
+            muteToggle.innerHTML = video.muted
+                ? '<i class="fa-solid fa-volume-xmark"></i>'
+                : '<i class="fa-solid fa-volume-high"></i>';
+        });
+
+        restart.addEventListener("click", () => {
+            video.currentTime = 0;
+            video.play();
+            playPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        });
+    </script>
+</body>
+
+</html>
