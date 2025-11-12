@@ -9,7 +9,7 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
         * {
             margin: 0;
             padding: 0;
@@ -55,25 +55,31 @@
         }
 
         h2 {
+            text-transform: uppercase;
+
             color: #000000;
             font-weight: 700;
-            font-size: 25px;
-            font-family: "Ubuntu", sans-serif;
+            font-size: 23px;
+            font-family: "Stack Sans Notch", sans-serif;
             /* text-shadow: 0 0 15px #f316a2, 0 0 30px #d40a80; */
             margin-bottom: 8px;
         }
 
         h2.most {
-            margin-top: 20px;
+            text-transform: uppercase;
+
+            margin-top: 15px;
+            font-size: 19px;
             color: #000000;
-            font-weight: 500;
-            font-family: "Ubuntu", sans-serif;
+            font-weight: 700;
+    font-family: "Stack Sans Notch", sans-serif;
             /* text-shadow: 0 0 25px #932f48, 0 0 40px #ff6699; */
         }
 
         h1 {
+            text-transform: uppercase;
             font-family: "Lobster", cursive;
-            font-size: 50px;
+            font-size: 40px;
             color: #000000;
             text-shadow: 0 0 10px #ff0000, 0 0 50px #cc0a0a;
             animation: glowText 2s infinite alternate;
@@ -245,7 +251,7 @@
         <h2>This song reminds me of you</h2>
 
         <div class="video-container">
-            <video id="loveVideo" src="vedeooo.mp4" autoplay muted loop playsinline></video>
+            <video id="loveVideo" src="vedeooo.mp4" autoplay  loop playsinline></video>
 
             <div class="controls">
                 <button id="playPause"><i class="fa-solid fa-pause"></i></button>
